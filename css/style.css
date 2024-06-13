@@ -237,7 +237,7 @@ header .nav3 ul li:not(:last-child)::after {
 }
 .counter-top button.btn{
     font-size: 14px;
-    background-color: var(--maincolor);
+    background-color: var(--secondcolor);
     width: 100%;
 }
 /* start counter */
@@ -246,7 +246,7 @@ header .nav3 ul li:not(:last-child)::after {
 }
 .counter h2{
     font-family: bruumBoldFont;
-    color: var(--maincolor);
+    color: var(--secondcolor);
     font-size: 30px;
     font-weight: bold;
     margin: 5px;
@@ -292,6 +292,40 @@ header .nav3 ul li:not(:last-child)::after {
     align-items: flex-start;
     justify-content: space-between;
 }
+footer .social a i{
+    font-size: 20px;
+}
+footer .social a div{
+    border-radius: 50%;
+    margin: 0 5px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+footer .social a img{
+    border-radius: 50%;
+    margin: 0 5px;
+    width: 30px;
+    height: 30px;
+}
+footer .social a .face-icon{
+    background-color: #3b5a9a;
+    color: #fff;
+}
+footer .social a .twitter-icon{
+    background-color: #1aa9e1;
+    color: #fff;
+}
+footer .social a .linked-icon{
+    background-color: #0073b2;
+    color: #fff;
+}
+footer .social a .youtube-icon{
+    color: #fff;
+    background-color: #b80504;
+}
 /* .cards .card .card-body .social img{
     width: 28px;
     height: 28px;
@@ -330,7 +364,7 @@ header .nav3 ul li:not(:last-child)::after {
 .cards .show-more a{
     color: var(--maincolor);
     text-decoration: underline;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     display: flex;
     justify-content: center;
 }
@@ -856,7 +890,7 @@ footer .logo span{
     font-family: boldFont;
 }
 footer h5{
-    color: var(--maincolor);
+    color: var(--secondcolor);
     font-size: 17px;
     font-weight: bold;
     text-transform: uppercase;
@@ -865,7 +899,8 @@ footer h5{
 footer form button.btn{
     display: flex;
     padding: 5px 10px;
-    background-color: #023ca7;
+    background-color: var(--secondcolor) !important;
+    border-color: var(--secondcolor) !important;
 }
 footer .links span, footer .links a{
     color: #000;
@@ -878,7 +913,7 @@ footer .links span:hover, footer .links a:hover{
     font-weight: 700;
 }
 footer .subscribe-label{
-    color: var(--maincolor);
+    color: var(--secondcolor);
     font-size: 17px;
     font-weight: bold;
 }
