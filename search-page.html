@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>World Summit</title>
+    <link rel="icon" type="image/x-icon" href="/images/icon.png">
+    <link rel="stylesheet" href="asset/fonts/remixicon.css">
+    <link rel="stylesheet" href="css/style-1.css">
+    <!-- <link rel="stylesheet" href="https://crm.dtmxapps.com/css/style.css" /> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+    <style>
+        .nav-1 li a {
+            color: #fff !important;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <header>
+        <div class="pt-3 pb-3">
+            <div class="container-fluid">
+                <div class="col-md-12">
+                    <div class="left-part">
+                        <a href="index.html">
+                            <img src="images/header_asia-02.jpg" alt="logo" class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ul class="text-center list nav-1 mb-0 pt-4 pb-4" style="background-color:#1c8adb;">
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+                <a href="#">Speakers Directory</a>
+            </li>
+            <li>
+                <a href="#">Influencers and Bloggers</a>
+            </li>
+            <li>
+                <a href="#">Events Suppliers</a>
+            </li>
+            <li>
+              <a href="#">Marketing Agencies</a>
+            </li>
+            <li>
+                  <a href="#">Tour and Travel</a>
+              </li>
+              <li>
+                  <a href="#">Government Org.</a>
+              </li>
+              <li>
+                  <a href="#">Business Org.</a>
+              </li>
+              <li>
+                <a href="#">Official Institutions</a>
+            </li>
+        </ul>
+    </header>
+
+    <div class="search-page mt-5">
+        <div class="container">
+            <div class="search-box">
+                <div class="search-btns text-center">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button id="advanceBtn" class="btn">Advanced Search</button>
+
+                            <button id="orgBtn" class="btn active-btn">By Org Reference</button>
+
+                            <button id="productBtn" class="btn">Products Search</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="search-input">
+                    <div class="advanced" style="display: none">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="EnglishName">Org :</label>
+                                    <input id="EnglishName" name="text" type="text" style="width:100%;" placeholder="Org Name">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group" id="category_panel">
+                                    <label for="CategoryId">Category :</label>
+                                    <select id="CategoryId" style="width:100%;">
+                                        <option value="">Select Category</option>
+                                    </select>
+                                    <i class="fa fa-spinner fa-spin" style="display: none;"></i>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group" id="typeofbusiness_panel">
+                                    <label for="TypeOfBusinessId">Type of Business :</label>
+                                    <select id="TypeOfBusinessId" style="width:100%;">
+                                        <option value="">Select Type of Business</option>
+                                    </select>
+                                    <i class="fa fa-spinner fa-spin" style="display: none;"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-md-4">
+                                <div class="form-group" id="country_panel">
+                                    <label for="CountryId">Country :</label>
+                                    <select id="CountryId" onChange="getStatesByCountry('CountryId', '#StateId', '#state_panel', '', '')" style="width: 100%;">
+                                        <option value="">Select Country</option>
+                                    </select>
+                                    <i class="fa fa-spinner fa-spin" style="display: none;"></i>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group" id="state_panel">
+                                    <label for="StateId">State/Province :</label>
+                                    <select id="StateId" name="state" onChange="getCitiesByState('StateId', '#CityId', '#city_panel', '', '')" style="width:100%;">
+                                        <option value="">Select State</option>
+                                    </select>
+                                    <i class="fa fa-spinner fa-spin" style="display: none;"></i>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group" id="city_panel">
+                                    <label for="CityId">City :</label>
+                                    <select id="CityId" style="width: 100%;">
+                                        <option value="">Select City</option>
+                                    </select>
+                                    <i class="fa fa-spinner fa-spin" style="display: none;"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-4 text-center">
+                            <div class="col-md-12">
+                                <button class="btn btn-danger" onClick="search()">Search</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="org text-center">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Org Ref (In Datamatix Platform) :</label>
+                                <input id="RefNo" type="text" placeholder="Org Ref No" />
+                                <button class="btn btn-danger" onClick="search()">Search</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product" style="display: none">
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="Category">Category :</label>
+                                    <select style="width:100%;">
+                                        <option selected="selected" value="0" style="width:100%;">Select Category</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="Country">Brand :</label>
+                                    <select style="width:100%;">
+                                        <option selected="selected" value="0" style="width:100%;">Select Brand</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="Country">Country :</label>
+                                        <select style="width: 100%;">
+                                            <option selected="selected" value="0">Select Country</option>
+                                            <option value="16">Bahrain</option>
+                                            <option value="106">Kuwait</option>
+                                            <option value="150">Oman</option>
+                                            <option value="162">Qatar</option>
+                                            <option value="172">Saudi Arabia</option>
+                                            <option value="207">UAE</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="Country">State/Province :</label>
+                                        <select name="state">
+                                            <option value="0">Select State</option>
+                                            <option value="204">ACRE</option>
+                                            <option value="198">ALAGOAS</option>
+                                            <option value="205">AMAPA</option>
+                                            <option value="202">AMAZONAS</option>
+                                            <option value="191">BAHIA</option>
+                                            <option value="196">CEARA</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="Country">City</label>
+                                        <select style="width: 100%;">
+                                            <option selected="selected" value="0">Select City</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4 text-center">
+                                <div class="col-md-12">
+                                    <button class="btn btn-danger" onClick="search()">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p id="loading" style="text-align: center; display: none" class="mt-5"><i class="fa fa-spinner fa-spin"></i> Please Wait!</p>
+
+    <div class="result-search mt-5">
+        <div id="search_result_panel" class="container"></div>
+    </div>
+
+    <footer>
+        <hr>
+
+        <div class="copyright text-center" style="background-color: transparent;">
+            <p>
+                <a href="http://datamatixgroup.com" target="_blank" style="color:#000">2024 © Datamatix Group - Copyright All Rights Reserved</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/e3cb7eb650.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+    <script>
+        var url_string = location.href;
+        var url = new URL(url_string);
+        var _typeOfBusinessId = url.searchParams.get("typeOfBusinessId");
+        if (_typeOfBusinessId !== null && _typeOfBusinessId !== "" && _typeOfBusinessId !== undefined) {
+            // DO NOTHING
+        } else {
+            //location.href = "supplier-directory.html";
+        }
+
+        var server = "https://crm.dtmxapps.com/"; // https://localhost:5001/ | https://crm.dtmxapps.com/
+
+        $(document).ready(function () {
+            $("#CategoryId").select2();
+            $("#TypeOfBusinessId").select2();
+            $("#CountryId").select2();
+            $("#StateId").select2();
+            $("#CityId").select2();
+
+            $(".select2-selection").css("height", "38px");
+            $(".select2-selection").css("border", "none");
+            $(".select2-selection").css("background-color", "#eee");
+            $(".select2-container--default .select2-selection--single .select2-selection__rendered").css("line-height", "32px");
+            $(".select2-container--default .select2-selection--single .select2-selection__arrow").css("height", "32px");
+            $(".select2-container--default .select2-selection--single").css("border-radius", "0");
+
+            getCategories("#CategoryId", "#category_panel", "");
+            getTypeOfBusinesses("#TypeOfBusinessId", "#typeofbusiness_panel", "");
+            getCountries("#CountryId", "#country_panel", "");
+        });
+
+        function getCategories(elementId, panelId, categorySelectedId) {
+            $(elementId).empty();
+            $(elementId).append('<option value="">Select Category</option>');
+            $.ajax({
+                url: server + "MasterData/api/MasterDataAPI/GetAllCategories",
+                type: "GET",
+                dataType: "JSON",
+                beforeSend: function () {
+                    $(panelId + " select").hide();
+                    $(panelId + " .select2").hide();
+                    $(panelId + " .fa-spinner").show();
+                },
+                complete: function () {
+                    $(panelId + " select").show();
+                    $(panelId + " .select2").show();
+                    $(panelId + " .fa-spinner").hide();
+                },
+                data: {
+                },
+                success: function (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        if (categorySelectedId !== null && categorySelectedId !== "" && categorySelectedId !== undefined) {
+                            if (categorySelectedId === result[i].id) {
+                                $(elementId).append(
+                                    '<option value="' + result[i].id + '" selected>' + result[i].name + '</option>'
+                                );
+                            } else {
+                                $(elementId).append(
+                                    '<option value="' + result[i].id + '">' + result[i].name + '</option>'
+                                );
+                            }
+                        } else {
+                            $(elementId).append(
+                                '<option value="' + result[i].id + '">' + result[i].name + '</option>'
+                            );
+                        }
+                    }
+                }, error: function (e) {
+                    console.log(e);
+                }
+            });
+        }
+
+        function getTypeOfBusinesses(elementId, panelId, typeOfBusinessSelectedId) {
+            $(elementId).empty();
+            $(elementId).append('<option value="">Select Type of Businesses</option>');
+            $.ajax({
+                url: server + "MasterData/api/MasterDataAPI/GetAllTypeOfBusinesses",
+                type: "GET",
+                dataType: "JSON",
+                beforeSend: function () {
+                    $(panelId + " select").hide();
+                    $(panelId + " .select2").hide();
+                    $(panelId + " .fa-spinner").show();
+                },
+                complete: function () {
+                    $(panelId + " select").show();
+                    $(panelId + " .select2").show();
+                    $(panelId + " .fa-spinner").hide();
+                },
+                data: {
+                },
+                success: function (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        if (typeOfBusinessSelectedId !== null && typeOfBusinessSelectedId !== "" && typeOfBusinessSelectedId !== undefined) {
+                            if (typeOfBusinessSelectedId === result[i].id) {
+                                $(elementId).append(
+                                    '<option value="' + result[i].id + '" selected>' + result[i].name + '</option>'
+                                );
+                            } else {
+                                $(elementId).append(
+                                    '<option value="' + result[i].id + '">' + result[i].name + '</option>'
+                                );
+                            }
+                        } else {
+                            if (_typeOfBusinessId !== null && _typeOfBusinessId !== "" && _typeOfBusinessId !== undefined) {
+                                if (_typeOfBusinessId === result[i].id) {
+                                    $(elementId).append(
+                                        '<option value="' + result[i].id + '" selected>' + result[i].name + '</option>'
+                                    );
+                                } else {
+                                    $(elementId).append(
+                                        '<option value="' + result[i].id + '">' + result[i].name + '</option>'
+                                    );
+                                }
+                            } else {
+                                $(elementId).append(
+                                    '<option value="' + result[i].id + '">' + result[i].name + '</option>'
+                                );
+                            }
+                        }
+                    }
+                }, error: function (e) {
+                    console.log(e);
+                }
+            });
+        }
+
+        function getCountries(elementId, panelId, countrySelectedId) {
+            $(elementId).empty();
+            $(elementId).append('<option value="">Select Country</option>');
+            $.ajax({
+                url: server + "MasterData/api/MasterDataAPI/GetAllCountries",
+                type: "GET",
+                dataType: "JSON",
+                beforeSend: function () {
+                    $(panelId + " select").hide();
+                    $(panelId + " .select2").hide();
+                    $(panelId + " .fa-spinner").show();
+                },
+                complete: function () {
+                    $(panelId + " select").show();
+                    $(panelId + " .select2").show();
+                    $(panelId + " .fa-spinner").hide();
+                },
+                data: {
+                }, success: function (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        if (countrySelectedId !== null && countrySelectedId !== "" && countrySelectedId !== undefined) {
+                            if (countrySelectedId === result[i].id) {
+                                $(elementId).append(
+                                    '<option value="' + result[i].id + '" selected>' + result[i].name + '</option>'
+                                );
+                            } else {
+                                $(elementId).append(
+                                    '<option value="' + result[i].id + '">' + result[i].name + '</option>'
+                                );
+                            }
+                        } else {
+                            $(elementId).append(
+                                '<option value="' + result[i].id + '">' + result[i].name + '</option>'
+                            );
+                        }
+                    }
+                }, error: function (e) {
+                    console.log(e);
+                }
+            });
+        }
+
+        function getStatesByCountry(countryElementId, stateElementId, statePanelId, countrySelectedId, stateSelectedId) {
+            $(stateElementId).empty();
+            $(stateElementId).append('<option value="">Select State</option>');
+            var countryId = "";
+            if (countrySelectedId !== null && countrySelectedId !== "" && countrySelectedId !== undefined) {
+                countryId = countrySelectedId;
+            } else {
+                countryId = document.getElementById(countryElementId).value;
+            }
+            $.ajax({
+                url: server + "MasterData/api/MasterDataAPI/GetAllStatesByCountryId",
+                type: "GET",
+                dataType: "JSON",
+                beforeSend: function () {
+                    $(statePanelId + " select").hide();
+                    $(statePanelId + " .select2").hide();
+                    $(statePanelId + " .fa-spinner").show();
+                },
+                complete: function () {
+                    $(statePanelId + " select").show();
+                    $(statePanelId + " .select2").show();
+                    $(statePanelId + " .fa-spinner").hide();
+                },
+                data: {
+                    countryId: countryId,
+                }, success: function (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        if (stateSelectedId !== null && stateSelectedId !== "" && stateSelectedId !== undefined) {
+                            if (stateSelectedId === result[i].id) {
+                                $(stateElementId).append(
+                                    '<option value="' + result[i].id + '" selected>' + result[i].name + '</option>'
+                                );
+                            } else {
+                                $(stateElementId).append(
+                                    '<option value="' + result[i].id + '">' + result[i].name + '</option>'
+                                );
+                            }
+                        } else {
+                            $(stateElementId).append(
+                                '<option value="' + result[i].id + '">' + result[i].name + '</option>'
+                            );
+                        }
+                    }
+                }, error: function (e) {
+                    console.log(e);
+                }
+            });
+        }
+
+        function getCitiesByState(stateElementId, cityElementId, cityPanelId, stateSelectedId, citySelectedId) {
+            $(cityElementId).empty();
+            $(cityElementId).append('<option value="">Select City</option>');
+            var stateId = "";
+            if (stateSelectedId !== null && stateSelectedId !== "" && stateSelectedId !== undefined) {
+                stateId = stateSelectedId;
+            } else {
+                stateId = document.getElementById(stateElementId).value;
+            }
+            $.ajax({
+                url: server + "MasterData/api/MasterDataAPI/GetAllCitiesByStateId",
+                type: "GET",
+                dataType: "JSON",
+                beforeSend: function () {
+                    $(cityPanelId + " select").hide();
+                    $(cityPanelId + " .select2").hide();
+                    $(cityPanelId + " .fa-spinner").show();
+                },
+                complete: function () {
+                    $(cityPanelId + " select").show();
+                    $(cityPanelId + " .select2").show();
+                    $(cityPanelId + " .fa-spinner").hide();
+                },
+                data: {
+                    stateId: stateId,
+                }, success: function (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        if (citySelectedId !== null && citySelectedId !== "" && citySelectedId !== undefined) {
+                            if (citySelectedId === result[i].id) {
+                                $(cityElementId).append(
+                                    '<option value="' + result[i].id + '" selected>' + result[i].name + '</option>'
+                                );
+                            } else {
+                                $(cityElementId).append(
+                                    '<option value="' + result[i].id + '">' + result[i].name + '</option>'
+                                );
+                            }
+                        } else {
+                            $(cityElementId).append(
+                                '<option value="' + result[i].id + '">' + result[i].name + '</option>'
+                            );
+                        }
+                    }
+                }, error: function (e) {
+                    console.log(e);
+                }
+            });
+        }
+
+        function search() {
+            $("#search_result_panel").empty();
+
+            var englishName,
+                categoryId,
+                typeOfBusinessId,
+                countryId,
+                stateId,
+                cityId,
+                refNo;
+
+            if (document.getElementById('advanceBtn').classList.contains('active-btn')) {
+                englishName = document.getElementById("EnglishName").value;
+                categoryId = document.getElementById("CategoryId").value;
+                typeOfBusinessId = document.getElementById("TypeOfBusinessId").value;
+                countryId = document.getElementById("CountryId").value;
+                stateId = document.getElementById("StateId").value;
+                cityId = document.getElementById("CityId").value;
+
+                if ((englishName === null || englishName === "" || englishName === undefined) &&
+                    (categoryId === null || categoryId === "" || categoryId === undefined) &&
+                    (typeOfBusinessId === null || typeOfBusinessId === "" || typeOfBusinessId === undefined) &&
+                    (countryId === null || countryId === "" || countryId === undefined) &&
+                    (stateId === null || stateId === "" || stateId === undefined) &&
+                    (cityId === null || cityId === "" || cityId === undefined)) {
+                    alert("At least one of the Org, Category, Type of Business, Country, State/Province and City fields is mandatory");
+                    return;
+                }
+            } else if (document.getElementById('orgBtn').classList.contains('active-btn')) {
+                refNo = document.getElementById("RefNo").value;
+
+                if (refNo === null || refNo === "" || refNo === undefined) {
+                    alert("The Org Ref field is mandatory");
+                    return;
+                }
+            } else if (document.getElementById('productBtn').classList.contains('active-btn')) {
+                alert("This tab will be activated soon");
+                return;
+            } else {
+                alert("Select one of the search tabs");
+                return;
+            }
+
+            $.ajax({
+                url: server + "Organization/api/OrganizationAPI/GetAll",
+                type: "POST",
+                dataType: "JSON",
+                beforeSend: function () {
+                    $(".search-page").hide();
+                    $("#loading").show();
+                },
+                complete: function () {
+                    $(".search-page").show();
+                    $("#loading").hide();
+                },
+                data: {
+                    EnglishName: englishName,
+                    CategoryId: categoryId,
+                    TypeOfBusinessId: typeOfBusinessId,
+                    CountryId: countryId,
+                    StateId: stateId,
+                    CityId: cityId,
+                    RefNo: refNo
+                }, success: function (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        $("#search_result_panel").append(
+                            '<div class="res-box">\
+                                <div class= "row mt-3 mb-3">\
+                                    <div class="col-lg-12 col-md-12">\
+                                        <div class="border-style-4 p-3 p-b-none">\
+                                            <div class="row pb-2">\
+                                                <div class="col-md-2">\
+                                                    <a href="#">\
+                                                        <img src="images/noimage.png" class="img-fluid p-2" alt="">\
+                                                    </a>\
+                                                </div>\
+                                                <div class="col-md-10">\
+                                                    <div class="row">\
+                                                        <div class="col-md-8 pl-0 pr-1">\
+                                                            <h4 class="color-dark text-6 m-b-none pb-1">' + result[i].name + '</h4>\
+                                                            <div class="info">Org Ref : ' + result[i].refNo + '  | Updated On: ' + (result[i].lastUpdate !== null && result[i].lastUpdate !== undefined && result[i].lastUpdate !== "" ? moment(result[i].lastUpdate).format("DD MMMM YYYY, HH:mm:ss") : "---") + '</div>\
+                                                        </div>\
+                                                        <div class="col-md-4 pl-1">\
+                                                            <div class="row">\
+                                                                <div class="col-md-9 pl-0  text-right">\
+                                                                    <i class="fa fa-star color-gold"></i>\
+                                                                    <i class="fa fa-star color-gold"></i>\
+                                                                    <i class="fa fa-star color-gold"></i>\
+                                                                    <strong>\
+                                                                        <span class="text-5">&nbsp;&nbsp;Fabulous</span>\
+                                                                    </strong>\
+                                                                    <br>\
+                                                                    <span class="color-grey text-3">2,314 Votes</span>\
+                                                                </div>\
+                                                                <div class="col-md-3 pr-0 ">\
+                                                                    <div class="rating-box2 text-center pt-1 pb-1">4.5</div>\
+                                                                </div>\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="row">\
+                                                        <div class="col-md-12 pl-0">Category : ' + (result[i].categoryName !== null && result[i].categoryName !== undefined && result[i].categoryName !== "" ? result[i].categoryName : "---") + '</div>\
+                                                    </div>\
+                                                    <div class="row">\
+                                                        <div class="col-md-12 pl-0">Country : ' + (result[i].countryName !== null && result[i].countryName !== undefined && result[i].countryName !== "" ? result[i].countryName : "---") + '  |  Org Establishment Year : ' + (result[i].establishedYear !== null && result[i].establishedYear !== undefined && result[i].establishedYear !== "" ? result[i].establishedYear : "---") + '</div>\
+                                                    </div>\
+                                                    <div class="row">\
+                                                        <div class="col-md-12 pl-0">\
+                                                            <a href="search-details.html?organizationId=' + result[i].id + '" class="link-brown">Organization More Details</a> | <a href="#" class="link-brown">Add to My Contacts</a>\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                            </div>\
+                                            <div class="row">\
+                                                <div class="col-md-12">\
+                                                    <div class="border-t-1-2 pt-1">\
+                                                        <div class="row">\
+                                                            <div class="col-md-12">\
+                                                                <a href="#" class="link-brown" title="Email" data-toggle="modal">Email this page</a> |\
+                                                                <span class="color-grey">Follow Us :</span>\
+                                                                <ul class=" social-icons hidden-xs" style="font-size: 20px; text-align: left; display: inline-block; padding-left: unset; margin-bottom: unset">\
+                                                                    <li>\
+                                                                        <a href="' + (result[i].facebook !== null && result[i].facebook !== undefined && result[i].facebook !== "" ? "https://www.facebook.com/" + result[i].facebook : "#") + '" target="_blank" title="Facebook">\
+                                                                            <i class="fab fa-facebook-f "></i>\
+                                                                        </a>\
+                                                                    </li>\
+                                                                    <li>\
+                                                                        <a href="' + (result[i].twitter !== null && result[i].twitter !== undefined && result[i].twitter !== "" ? "https://x.com/" + result[i].twitter : "#") + '" target="_blank" title="Twitter">\
+                                                                            <i class="fab fa-twitter "></i>\
+                                                                        </a>\
+                                                                    </li>\
+                                                                    <li>\
+                                                                        <a href="' + (result[i].linkedIn !== null && result[i].linkedIn !== undefined && result[i].linkedIn !== "" ? "https://www.linkedin.com/in/" + result[i].linkedIn : "#") + '" target="_blank" title="Linkedin">\
+                                                                            <i class="fab fa-linkedin "></i>\
+                                                                        </a>\
+                                                                    </li>\
+                                                                    <li>\
+                                                                        <a href="' + (result[i].instagram !== null && result[i].instagram !== undefined && result[i].instagram !== "" ? "https://www.instagram.com/" + result[i].instagram : "#") + '" target="_blank" title="instagram">\
+                                                                            <i class="fab fa-instagram "></i>\
+                                                                        </a>\
+                                                                    </li>\
+                                                                </ul> |\
+                                                                <a href="' + (result[i].website !== null && result[i].website !== undefined && result[i].website !== "" ? result[i].website : "#") + '" target="_blank" class="link-dark">' + (result[i].website !== null && result[i].website !== undefined && result[i].website !== "" ? result[i].website : "---") + '</a>\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                            </div>\
+                                            <div class="row mt-2">\
+                                                <div class="col-md-12 mb-2">\
+                                                    <span class="color-grey">Location :</span> <i class="fa fa-map-marker-alt"></i>&nbsp;\
+                                                    <a class="link-style-3" href="#" target="_blank" style="color: #000;">' + (result[i].address !== null && result[i].address !== undefined && result[i].address !== "" ? result[i].address : "---") + '</a>\
+                                                </div>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                    <div class="col-lg-12 col-md-12">\
+                                        <div class="bacogrda text-color-dark grey-border-top" style="background:#dadada;">\
+                                            <div class="row">\
+                                                <div class="col-md-3 text-center pr-1 pl-1 pt-2 pb-2 grey-border-right">\
+                                                    <i class="fa fa-phone-volume"></i>&nbsp;Call : <a href="tel:' + (result[i].tel !== null && result[i].tel !== undefined && result[i].tel !== "" ? result[i].tel : "#") + '" target="_blank" class="link-brown">' + (result[i].tel !== null && result[i].tel !== undefined && result[i].tel !== "" ? result[i].tel : "---") + '</a>\
+                                                </div>\
+                                                <div class="col-md-3 text-center pr-1 pl pt-2 pb-2 grey-border-right">\
+                                                    <a><i class="fa fa-angle-right color-gold"></i>&nbsp;Business Intelligence</a>\
+                                                </div>\
+                                                <div class="col-md-2 text-center pr-1 pl pt-2 pb-2 grey-border-right">\
+                                                    <a><i class="fa fa-angle-right color-gold"></i>&nbsp;Suggestions</a>\
+                                                </div>\
+                                                <div class="col-md-4 pr-1 pl text-center pt-2 pb-2">\
+                                                    <div class="rating-container theme-krajee-fa rating-xs rating-animate">\
+                                                        <span>My Rating</span>\
+                                                        <div class="clear-rating clear-rating-active" title="Clear"></div><div class="rating-stars" title="4.5">\
+                                                            <span class="empty-stars">\
+                                                                <span class="star"><i class="fa fa-star"></i></span>\
+                                                                <span class="star"><i class="fa fa-star"></i></span>\
+                                                                <span class="star"><i class="fa fa-star"></i></span>\
+                                                                <span class="star"><i class="fa fa-star"></i></span>\
+                                                            </span>\
+                                                        </div>\
+                                                        <div class="caption"></div>\
+                                                    </div>\
+                                                </div>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                </div >\
+                            </div>'
+                        );
+                    }
+                }, error: function (e) {
+                    console.log(e);
+                }
+            });
+        }
+
+        $("#advanceBtn").on("click", function () {
+            $(".advanced").css("display", "block");
+            $(".org").css("display", "none");
+            $(".product").css("display", "none");
+
+            $("#advanceBtn").addClass("active-btn");
+            $("#orgBtn").removeClass("active-btn");
+            $("#productBtn").removeClass("active-btn");
+        });
+
+        $("#orgBtn").on("click", function () {
+            $(".advanced").css("display", "none");
+            $(".org").css("display", "block");
+            $(".product").css("display", "none");
+
+            $("#advanceBtn").removeClass("active-btn");
+            $("#orgBtn").addClass("active-btn");
+            $("#productBtn").removeClass("active-btn");
+        });
+
+        $("#productBtn").on("click", function () {
+            $(".advanced").css("display", "none");
+            $(".org").css("display", "none");
+            $(".product").css("display", "block");
+
+            $("#advanceBtn").removeClass("active-btn");
+            $("#orgBtn").removeClass("active-btn");
+            $("#productBtn").addClass("active-btn");
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
